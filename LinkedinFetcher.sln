@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedinFetcher.MVC", "LinkedinFetcher.MVC\LinkedinFetcher.MVC.csproj", "{ACD75268-6272-41EA-BF81-B2A2FCF7C907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedinFetcher.Tests", "LinkedinFetcher.Tests\LinkedinFetcher.Tests.csproj", "{5DDAF48E-92BF-47C0-99A4-A1249482F047}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACD75268-6272-41EA-BF81-B2A2FCF7C907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD75268-6272-41EA-BF81-B2A2FCF7C907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD75268-6272-41EA-BF81-B2A2FCF7C907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD75268-6272-41EA-BF81-B2A2FCF7C907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DDAF48E-92BF-47C0-99A4-A1249482F047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDAF48E-92BF-47C0-99A4-A1249482F047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDAF48E-92BF-47C0-99A4-A1249482F047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDAF48E-92BF-47C0-99A4-A1249482F047}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
