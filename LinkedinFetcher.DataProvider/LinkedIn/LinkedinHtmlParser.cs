@@ -43,8 +43,8 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             {
                 var item = new WorkInformation
                 {
-                    Company = GetDataBySelector(node, ".item-subtitle .translation"),
-                    Title = GetDataBySelector(node, ".item-title .translation"),
+                    Company = GetDataBySelector(node, ".item-subtitle"),
+                    Title = GetDataBySelector(node, ".item-title"),
                     Location = GetDataBySelector(node, ".meta .location")
                 };
                 ExtractMembershipInformation(item, node);
@@ -61,7 +61,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
                 var item = new VolunteerInformation()
                 {
                     Organization = GetDataBySelector(node, ".item-subtitle"),
-                    Role = GetDataBySelector(node, ".item-title .translation"),
+                    Role = GetDataBySelector(node, ".item-title"),
                     Cause = GetDataBySelector(node, ".meta .cause"),
                 };
 
@@ -83,8 +83,8 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             {
                 var item = new EducationInformation
                 {
-                    Degree = GetDataBySelector(node, ".item-subtitle .translation"),
-                    Institution = GetDataBySelector(node, ".item-title .translation"),
+                    Degree = GetDataBySelector(node, ".item-subtitle"),
+                    Institution = GetDataBySelector(node, ".item-title"),
                 };
                 ExtractMembershipInformation(item, node);
 
@@ -136,7 +136,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             profile.Recommendations = GetDataListBySelector(document,
                 "#recommendations .recommendation-container .recommendation").ToList();
             profile.Languages = GetDataListBySelector(document,
-                "#languages .language .name .translation").ToList();
+                "#languages .language .name").ToList();
         }
 
         private void ExtractSimpleValues(Profile profile, HtmlNode document)
@@ -144,7 +144,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             profile.Name = GetDataBySelector(document,
                 "#topcard .profile-overview-content>#name");
             profile.CurrentTitle = GetDataBySelector(document,
-                "#topcard .profile-overview-content>.title>.translation");
+                "#topcard .profile-overview-content>.title");
             profile.CurrentPosition = GetDataBySelector(document,
                 "#topcard .profile-overview-content [data-section='currentPositionsDetails'] .org>*");
             profile.Summary = GetDataBySelector(document,

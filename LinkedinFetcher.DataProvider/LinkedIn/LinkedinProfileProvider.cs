@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,10 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
     /// </summary>
     public class LinkedinProfileProvider : IProfileProvider
     {
-        private readonly LinkedinHtmlParser _parser;
-        private readonly HtmlDownloader _downloader;
+        private readonly ILinkedinHtmlParser _parser;
+        private readonly IHtmlDownloader _downloader;
 
-        public LinkedinProfileProvider(LinkedinHtmlParser parser, HtmlDownloader downloader)
+        public LinkedinProfileProvider(ILinkedinHtmlParser parser, IHtmlDownloader downloader)
         {
             _parser = parser;
             _downloader = downloader;

@@ -39,6 +39,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fizzler, Version=0.1.15619.0, Culture=neutral, PublicKeyToken=4ebff4844e382110, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fizzler.1.0.0\lib\net35\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack, Version=0.1.15619.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fizzler.Systems.HtmlAgilityPack.1.0.0\lib\net35\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=2.0.20.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlAgilityPack.Net45.2.0.20\lib\net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -188,6 +200,10 @@
     <ProjectReference Include="..\LinkedinFetcher.Common\LinkedinFetcher.Common.csproj">
       <Project>{12bab64b-1ff6-4825-bcdc-54db2923e2e1}</Project>
       <Name>LinkedinFetcher.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinkedinFetcher.DataProvider\LinkedinFetcher.DataProvider.csproj">
+      <Project>{0f11435b-5160-4d78-a195-7b15e54fd319}</Project>
+      <Name>LinkedinFetcher.DataProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

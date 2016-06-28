@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LinkedinFetcher.Common.Interfaces;
 using LinkedinFetcher.Common.Models;
+using LinkedinFetcher.DataProvider.Store.Models;
 using MongoDB.Driver;
 
 namespace LinkedinFetcher.DataProvider.Store
@@ -21,7 +22,7 @@ namespace LinkedinFetcher.DataProvider.Store
         public override void Store(Profile profile)
         {
             var collection = getMongoCollection();
-            collection.InsertOne(profile);
+            collection.InsertOne(new MongoProfile(profile));
         }
 
         public override IEnumerable<Profile> Search(SearchParameters parameters)
@@ -30,12 +31,12 @@ namespace LinkedinFetcher.DataProvider.Store
             return Search(parameters, collection.AsQueryable());
         }
 
-        private IMongoCollection<Profile> getMongoCollection()
+        private IMongoCollection<MongoProfile> getMongoCollection()
         {
             var client = new MongoClient(ConnectionString);
             var database = client.GetDatabase(DbName);
 
-            IMongoCollection<Profile> collection = database.GetCollection<Profile>(CollectionName);
+            IMongoCollection<MongoProfile> collection = database.GetCollection<MongoProfile>(CollectionName);
             return collection;
         }
     }

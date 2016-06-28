@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkedinFetcher.Common.Models
 {
@@ -18,5 +19,28 @@ namespace LinkedinFetcher.Common.Models
         public List<WorkInformation> Experience { get; set; }
         public List<VolunteerInformation> Volunteer { get; set; }
         public List<AssociatedPerson> AssociatedPeople { get; set; }
+
+        public Profile()
+        {
+            
+        }
+
+        public Profile(Profile otherProfile)
+        {
+            ProfileUrl = otherProfile.ProfileUrl;
+            Name = otherProfile.Name;
+            CurrentTitle = otherProfile.CurrentTitle;
+            CurrentPosition = otherProfile.CurrentPosition;
+            Summary = otherProfile.Summary;
+            Location = otherProfile.Location;
+            Skills = otherProfile.Skills.ToList();
+            Languages = otherProfile.Languages.ToList();
+            Groups = otherProfile.Groups.ToList();
+            Recommendations = otherProfile.Recommendations.ToList();
+            Education = otherProfile.Education.ToList();
+            Experience = otherProfile.Experience.ToList();
+            Volunteer = otherProfile.Volunteer.ToList();
+            AssociatedPeople = otherProfile.AssociatedPeople.ToList();
+        }
     }
 }
