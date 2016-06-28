@@ -38,7 +38,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
         private void ExtractExperience(Profile profile, HtmlNode document)
         {
             profile.Experience = new List<WorkInformation>();
-            var nodes = document.QuerySelectorAll("#education .schools .school");
+            var nodes = document.QuerySelectorAll("#experience .positions .position");
             foreach (var node in nodes)
             {
                 var item = new WorkInformation
@@ -60,9 +60,9 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             {
                 var item = new VolunteerInformation()
                 {
-                    Organization = GetDataBySelector(node, ".item-subtitle>a"),
+                    Organization = GetDataBySelector(node, ".item-subtitle"),
                     Role = GetDataBySelector(node, ".item-title .translation"),
-                    Cause = GetDataBySelector(node, ".mta .cause"),
+                    Cause = GetDataBySelector(node, ".meta .cause"),
                 };
 
                 if (String.IsNullOrEmpty(item.Organization))
@@ -103,7 +103,11 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             }
             else
             {
-                item.EndDate = GetDataBySelector(node, ".meta .date-range>time:last-child");
+                item.EndDate = GetDataBySelector(node, ".meta .date-range>time:nth-child(2)");
+                if (String.IsNullOrEmpty(item.EndDate))
+                {
+                    item.EndDate = "Present";
+                }
             }
         }
 
@@ -131,6 +135,8 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
                 "#groups .group .item-title>a").ToList();
             profile.Recommendations = GetDataListBySelector(document,
                 "#recommendations .recommendation-container .recommendation").ToList();
+            profile.Languages = GetDataListBySelector(document,
+                "#languages .language .name .translation").ToList();
         }
 
         private void ExtractSimpleValues(Profile profile, HtmlNode document)

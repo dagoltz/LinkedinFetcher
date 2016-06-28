@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedinFetcher.Common", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedinFetcher.DataProvider", "LinkedinFetcher.DataProvider\LinkedinFetcher.DataProvider.csproj", "{0F11435B-5160-4D78-A195-7B15E54FD319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{517B92D8-4C7D-424A-827B-595C6B97CDD4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4B0DF361-799E-476B-974A-C10EAFC7DFF0}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -40,10 +38,6 @@ Global
 		{0F11435B-5160-4D78-A195-7B15E54FD319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F11435B-5160-4D78-A195-7B15E54FD319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F11435B-5160-4D78-A195-7B15E54FD319}.Release|Any CPU.Build.0 = Release|Any CPU
-		{517B92D8-4C7D-424A-827B-595C6B97CDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{517B92D8-4C7D-424A-827B-595C6B97CDD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{517B92D8-4C7D-424A-827B-595C6B97CDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{517B92D8-4C7D-424A-827B-595C6B97CDD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
