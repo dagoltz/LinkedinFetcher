@@ -1,9 +1,7 @@
-﻿using System.Data;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Web;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace LinkedinFetcher.DataProvider.LinkedIn
 {
@@ -12,21 +10,16 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
     {
         public string DownloadHtml(string url)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            using (var response = (HttpWebResponse)request.GetResponse())
+            var client = new HttpClient();
+            var request = new HttpRequestMessage()
             {
-                if (response.StatusCode != HttpStatusCode.OK)
-                    throw new HttpException((int) response.StatusCode, response.StatusDescription);
+                RequestUri = new Uri(url),
+                Method = HttpMethod.Get,
+            };
+            request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("br"));
 
-                Stream receiveStream = response.GetResponseStream();
-                if (receiveStream == null)
-                    throw new NoNullAllowedException("The Stream of data from linkedin is null");
-
-                using (var readStream = new StreamReader(receiveStream, Encoding.UTF8))
-                {
-                    return readStream.ReadToEnd();
-                }
-            }
+            var str = client.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
+            return str;
         }
     }
 }
