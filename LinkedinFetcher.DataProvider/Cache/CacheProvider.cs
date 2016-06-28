@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
@@ -7,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace LinkedinFetcher.DataProvider.Cache
 {
+    /// <summary>
+    /// This is a modified version of http://stackoverflow.com/questions/21269170
+    /// I is a utility to help save entities to cache and get fresh ones once thier gone
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    [ExcludeFromCodeCoverage]
     class CacheProvider<T> where T : class
     {
         private const int HoursToStore = 5;

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Web;
 
 namespace LinkedinFetcher.DataProvider.LinkedIn
 {
+    [ExcludeFromCodeCoverage]
     public class HtmlDownloader : IHtmlDownloader
     {
         public string DownloadHtml(string url)
