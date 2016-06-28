@@ -4,6 +4,6 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
 {
     public interface ILinkedinHtmlParser
     {
-        Profile ParseProfile(string html);
+        Profile ParseProfile(string html, string url);
     }
 }
