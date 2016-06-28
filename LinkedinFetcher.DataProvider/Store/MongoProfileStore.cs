@@ -6,20 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using LinkedinFetcher.Common.Interfaces;
 using LinkedinFetcher.Common.Models;
+using MongoDB.Driver;
 
 namespace LinkedinFetcher.DataProvider.Store
 {
     [ExcludeFromCodeCoverage]
-    public class MongoProfileStore : IProfileStore
+    public class MongoProfileStore : LinqSearchStore
     {
-        public void Store(Profile profile)
+        // TODO: get from config
+        const string ConnectionString = "******";
+        private const string DbName = "linkedin-fetcher-db";
+        private const string CollectionName = "profiles";
+
+        public override void Store(Profile profile)
         {
-            throw new NotImplementedException();
+            var collection = getMongoCollection();
+            collection.InsertOne(profile);
         }
 
-        public IEnumerable<Profile> Search(SearchParameters parameters)
+        public override IEnumerable<Profile> Search(SearchParameters parameters)
         {
-            throw new NotImplementedException();
+            var collection = getMongoCollection();
+            return Search(parameters, collection.AsQueryable());
+        }
+
+        private IMongoCollection<Profile> getMongoCollection()
+        {
+            var client = new MongoClient(ConnectionString);
+            var database = client.GetDatabase(DbName);
+
+            IMongoCollection<Profile> collection = database.GetCollection<Profile>(CollectionName);
+            return collection;
         }
     }
 }

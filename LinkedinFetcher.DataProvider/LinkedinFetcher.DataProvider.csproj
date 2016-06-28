@@ -40,6 +40,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlAgilityPack.Net45.2.0.20\lib\net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.2.4\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.2.4\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.2.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
@@ -57,6 +66,7 @@
     <Compile Include="LinkedIn\ILinkedinHtmlParser.cs" />
     <Compile Include="LinkedIn\LinkedinHtmlParser.cs" />
     <Compile Include="LinkedIn\LinkedinProfileProvider.cs" />
+    <Compile Include="Store\LinqSearchStore.cs" />
     <Compile Include="Store\MemoryProfileStore.cs" />
     <Compile Include="Store\MongoProfileStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
