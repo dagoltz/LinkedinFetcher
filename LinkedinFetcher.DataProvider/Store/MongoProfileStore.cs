@@ -21,17 +21,17 @@ namespace LinkedinFetcher.DataProvider.Store
 
         public override void Store(Profile profile)
         {
-            var collection = getMongoCollection();
+            var collection = GetMongoCollection();
             collection.InsertOne(new MongoProfile(profile));
         }
 
         public override IEnumerable<Profile> Search(SearchParameters parameters)
         {
-            var collection = getMongoCollection();
+            var collection = GetMongoCollection();
             return Search(parameters, collection.AsQueryable());
         }
 
-        private IMongoCollection<MongoProfile> getMongoCollection()
+        private IMongoCollection<MongoProfile> GetMongoCollection()
         {
             var client = new MongoClient(ConnectionString);
             var database = client.GetDatabase(DbName);
