@@ -33,6 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fizzler, Version=0.1.15619.0, Culture=neutral, PublicKeyToken=4ebff4844e382110, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fizzler.1.0.0\lib\net35\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack, Version=0.1.15619.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fizzler.Systems.HtmlAgilityPack.1.0.0\lib\net35\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.Net45.2.0.20\lib\net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -91,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProviders\LinkedinHtmlParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
@@ -101,6 +113,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LinkedinFetcher.Common\LinkedinFetcher.Common.csproj">
+      <Project>{12bab64b-1ff6-4825-bcdc-54db2923e2e1}</Project>
+      <Name>LinkedinFetcher.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinkedinFetcher.DataProvider\LinkedinFetcher.DataProvider.csproj">
+      <Project>{0f11435b-5160-4d78-a195-7b15e54fd319}</Project>
+      <Name>LinkedinFetcher.DataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LinkedinFetcher.MVC\LinkedinFetcher.MVC.csproj">
       <Project>{ACD75268-6272-41EA-BF81-B2A2FCF7C907}</Project>
       <Name>LinkedinFetcher.MVC</Name>

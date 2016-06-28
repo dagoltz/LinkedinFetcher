@@ -15,6 +15,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
             htmlDocument.LoadHtml(html);
 
             var profile = new Profile() { ProfileUrl = url };
+
             ExtractAllValues(profile, htmlDocument.DocumentNode);
             return profile;
         }
@@ -163,7 +164,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
                 return Enumerable.Empty<string>();
 
             var dataNode = node.QuerySelectorAll(selector);
-            return dataNode.Select(d => d.InnerHtml);
+            return dataNode.Select(d => d.InnerText.Trim());
         }
     }
 }
