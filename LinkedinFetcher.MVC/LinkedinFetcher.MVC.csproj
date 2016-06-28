@@ -184,7 +184,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LinkedinFetcher.Common\LinkedinFetcher.Common.csproj">
+      <Project>{12bab64b-1ff6-4825-bcdc-54db2923e2e1}</Project>
+      <Name>LinkedinFetcher.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
