@@ -14,16 +14,28 @@ namespace LinkedinFetcher.DataProvider.Cache
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [ExcludeFromCodeCoverage]
-    class CacheProvider<T> where T : class
+    public class MemoryCacheProvider<T> : ICacheProvider<T> where T : class
     {
-        private const int HoursToStore = 5;
-        static readonly object cacheLock = new object();
-        internal static T GetCachedData(Func<T> getFreshData)
+        private const int DefaultHoursToStore = 5;
+        private readonly int _hoursToStore;
+        // We DO want to get one per T, so this is OK:
+        // ReSharper disable once StaticFieldInGenericType
+        static readonly object CacheLock = new object();
+
+        public MemoryCacheProvider() : this(DefaultHoursToStore)
+        {
+        }
+        public MemoryCacheProvider(int hoursToStore)
+        {
+            _hoursToStore = hoursToStore;
+        }
+
+        public  T GetCachedData(Func<T> getFreshData)
         {
             return GetCachedData((str) => getFreshData(), String.Empty);
         }
 
-        internal static T GetCachedData(Func<string, T> getFreshData, string entityId)
+        public T GetCachedData(Func<string, T> getFreshData, string entityId)
         {
             var key = typeof(T).AssemblyQualifiedName + entityId;
             //Returns null if the string does not exist, prevents a race condition where the cache invalidates between the contains check and the retreival.
@@ -34,7 +46,7 @@ namespace LinkedinFetcher.DataProvider.Cache
                 return cachedString;
             }
 
-            lock (cacheLock)
+            lock (CacheLock)
             {
                 //Check to see if anyone wrote to the cache while we where waiting our turn to write the new value.
                 cachedString = MemoryCache.Default.Get(key, null) as T;
@@ -48,7 +60,7 @@ namespace LinkedinFetcher.DataProvider.Cache
                 T expensiveDto = getFreshData(entityId);
                 var cip = new CacheItemPolicy()
                 {
-                    AbsoluteExpiration = new DateTimeOffset(DateTime.Now.AddHours(HoursToStore))
+                    AbsoluteExpiration = new DateTimeOffset(DateTime.Now.AddHours(_hoursToStore))
                 };
                 MemoryCache.Default.Set(key, expensiveDto, cip);
                 return expensiveDto;

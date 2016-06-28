@@ -61,7 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\CacheProvider.cs" />
+    <Compile Include="Cache\MemoryCacheProvider.cs" />
+    <Compile Include="Cache\ICacheProvider.cs" />
     <Compile Include="LinkedIn\HtmlDownloader.cs" />
     <Compile Include="LinkedIn\IHtmlDownloader.cs" />
     <Compile Include="LinkedIn\ILinkedinHtmlParser.cs" />

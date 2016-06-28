@@ -18,11 +18,13 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
     {
         private readonly ILinkedinHtmlParser _parser;
         private readonly IHtmlDownloader _downloader;
+        private readonly ICacheProvider<Profile> _cacheProvider;
 
-        public LinkedinProfileProvider(ILinkedinHtmlParser parser, IHtmlDownloader downloader)
+        public LinkedinProfileProvider(ILinkedinHtmlParser parser, IHtmlDownloader downloader, ICacheProvider<Profile> cacheProvider)
         {
             _parser = parser;
             _downloader = downloader;
+            _cacheProvider = cacheProvider;
         }
 
         /// <summary>
@@ -37,7 +39,7 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
                 throw new NoNullAllowedException("profileUrl must not be empty or null");
 
             profileUrl = CleanUrl(profileUrl);
-            var profile = CacheProvider<Profile>.GetCachedData(DownloadAndParseProfile, profileUrl);
+            var profile = _cacheProvider.GetCachedData(DownloadAndParseProfile, profileUrl);
             return profile;
         }
 
