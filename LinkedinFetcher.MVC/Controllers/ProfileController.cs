@@ -12,6 +12,9 @@ using LinkedinFetcher.DataProvider.Store;
 
 namespace LinkedinFetcher.MVC.Controllers
 {
+    /// <summary>
+    /// The profile controller allows you to fetch &amp; save profiles and to search them
+    /// </summary>
     public class ProfileController : ApiController
     {
         private readonly IProfileProvider _profileProvider = new LinkedinProfileProvider(
@@ -25,7 +28,7 @@ namespace LinkedinFetcher.MVC.Controllers
         /// all parameters are optional but at least one parameter must be used.
         /// there is an AND between all parameters
         /// </summary>
-        /// <param name="skill">a list of skills to be contained in the profile skills: &skill=C#&skill=SQL&skill=.NET</param>
+        /// <param name="skill">a list of skills to be contained in the profile skills: &amp;skill=C#&amp;skill=SQL&amp;skill=.NET</param>
         /// <param name="name">This is to be contained in the profile name</param>
         /// <param name="currentTitle">This is to be contained in the profile currentTitle</param>
         /// <param name="currentPosition">This is to be contained in the profile currentPosition</param>
@@ -40,6 +43,23 @@ namespace LinkedinFetcher.MVC.Controllers
             return _profileStore.Search(parameters);
         }
 
+        /// <summary>
+        /// Fetch and save a linkedin profile
+        /// </summary>
+        /// <param name="publicUrl">
+        /// the url to the public profile in linkedin
+        /// should look like: https://il.linkedin.com/in/degoltz
+        /// </param>
+        /// <returns></returns>
+        public Profile Post([FromBody]string publicUrl)
+        {
+            var profile = _profileProvider.GetProfile(publicUrl);
+            _profileStore.Store(profile);
+
+            return profile;
+        }
+
+
         private void AssertParameters(SearchParameters parameters)
         {
             bool flag = false;
@@ -49,16 +69,7 @@ namespace LinkedinFetcher.MVC.Controllers
             flag = !String.IsNullOrEmpty(parameters.Summary) || flag;
             flag = parameters.Skills.Any() || flag;
 
-            if (!flag) throw new ArgumentNullException("parameters","At least one parameter must be used");
-        }
-
-        // POST api/profile
-        public Profile Post([FromBody]string publicUrl)
-        {
-            var profile = _profileProvider.GetProfile(publicUrl);
-            _profileStore.Store(profile);
-
-            return profile;
+            if (!flag) throw new ArgumentNullException("parameters", "At least one parameter must be used");
         }
     }
 }

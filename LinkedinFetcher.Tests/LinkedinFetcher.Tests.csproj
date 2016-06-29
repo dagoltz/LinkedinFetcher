@@ -104,7 +104,6 @@
   <ItemGroup>
     <Compile Include="DataProviders\LinkedinHtmlParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -125,6 +124,9 @@
       <Project>{ACD75268-6272-41EA-BF81-B2A2FCF7C907}</Project>
       <Name>LinkedinFetcher.MVC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
