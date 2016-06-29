@@ -16,10 +16,10 @@ namespace LinkedinFetcher.DataProvider.Store
         protected IEnumerable<Profile> Search(SearchParameters parameters, IEnumerable<Profile> profiles)
         {
             return profiles
-                .Where(p => p.Name.Contains(parameters.Name ?? String.Empty))
-                .Where(p => p.CurrentPosition.Contains(parameters.CurrentPosition ?? String.Empty))
-                .Where(p => p.CurrentTitle.Contains(parameters.CurrentTitle ?? String.Empty))
-                .Where(p => p.Summary.Contains(parameters.Summary ?? String.Empty))
+                .Where(p => (p.Name ?? String.Empty).Contains(parameters.Name ?? String.Empty))
+                .Where(p => (p.CurrentPosition ?? String.Empty).Contains(parameters.CurrentPosition ?? String.Empty))
+                .Where(p => (p.CurrentTitle ?? String.Empty).Contains(parameters.CurrentTitle ?? String.Empty))
+                .Where(p => (p.Summary ?? String.Empty).Contains(parameters.Summary ?? String.Empty))
                 .Where(p => (parameters.Skills ?? Enumerable.Empty<string>()).All(s => p.Skills.Any(ps => ps.Contains(s))));
         }
     }

@@ -28,7 +28,8 @@ namespace LinkedinFetcher.DataProvider.Store
         public override IEnumerable<Profile> Search(SearchParameters parameters)
         {
             var collection = GetMongoCollection();
-            return Search(parameters, collection.AsQueryable());
+            var results = Search(parameters, collection.AsQueryable()).Select(p => new Profile(p));
+            return results;
         }
 
         private IMongoCollection<MongoProfile> GetMongoCollection()
