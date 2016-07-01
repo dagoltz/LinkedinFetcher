@@ -10,6 +10,7 @@ namespace LinkedinFetcher.Tests.DataProviders
     [TestClass]
     public class LinkedinHtmlParserTest
     {
+        #region Normal Input
         [TestMethod]
         public void NormalInput_SimpleValuesExtract()
         {
@@ -346,6 +347,32 @@ namespace LinkedinFetcher.Tests.DataProviders
                 Assert.AreEqual(volunteerInformations[i].EndDate, result.Volunteer[i].EndDate);
                 Assert.AreEqual(volunteerInformations[i].Description, result.Volunteer[i].Description);
             }
+        }
+        #endregion
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "An empty html was inappropriately allowed.")]
+        public void EmptyInput_ExceptionThrown()
+        {
+            // Arrange
+            ILinkedinHtmlParser htmlParser = new LinkedinHtmlParser();
+            string html = String.Empty;
+            const string url = "https://il.linkedin.com/in/talbronfer";
+
+            // Act
+            htmlParser.ParseProfile(html, url);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "An invalid html was inappropriately allowed.")]
+        public void InvalidInput_ExceptionThrown()
+        {
+            // Arrange
+            ILinkedinHtmlParser htmlParser = new LinkedinHtmlParser();
+            const string html = "who let the dogs out?";
+            const string url = "https://il.linkedin.com/in/talbronfer";
+
+            // Act
+            htmlParser.ParseProfile(html, url);
         }
 
         private static string GetRegularHtml()

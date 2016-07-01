@@ -11,13 +11,44 @@ namespace LinkedinFetcher.DataProvider.LinkedIn
     {
         public Profile ParseProfile(string html, string url)
         {
+            AssertInput(html, url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
             var profile = new Profile() { ProfileUrl = url };
 
             ExtractAllValues(profile, htmlDocument.DocumentNode);
+
+            AssertOutput(profile);
             return profile;
+        }
+
+        private void AssertOutput(Profile profile)
+        {
+            if (String.IsNullOrEmpty(profile.Name)) throw new ArgumentException("name was not found in the given html");
+
+            if (!String.IsNullOrEmpty(profile.CurrentTitle)) return;
+            if (!String.IsNullOrEmpty(profile.CurrentPosition)) return;
+            if (!String.IsNullOrEmpty(profile.Summary)) return;
+            if (!String.IsNullOrEmpty(profile.Location)) return;
+
+            if (profile.Recommendations.Any()) return;
+            if (profile.Languages.Any()) return;
+            if (profile.Skills.Any()) return;
+            if (profile.Groups.Any()) return;
+
+            if (profile.Education.Any()) return;
+            if (profile.Experience.Any()) return;
+            if (profile.Volunteer.Any()) return;
+            if (profile.AssociatedPeople.Any()) return;
+
+            throw new ArgumentException("nothing but name was found in the given html");
+        }
+
+        private void AssertInput(string html, string url)
+        {
+            if (String.IsNullOrWhiteSpace(html)) throw new ArgumentException("html cannot be empty or null or whitespace", "html");
+            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentException("url cannot be empty or null or whitespace", "url");
         }
 
         private void ExtractAllValues(Profile profile, HtmlNode document)
