@@ -482,6 +482,20 @@ namespace LinkedinFetcher.Tests.DataProviders
                 Assert.AreEqual(volunteerInformations[i].Description, result.Volunteer[i].Description);
             }
         }
+
+        [TestMethod]
+        public void NormalInput_ValidateUrlClean()
+        {
+            // Arrange
+            const string url = "https://il.linkedin.com/in/talbronfer?bla=blab_sametal";
+
+            // Act
+            var result = _profileProvider.GetProfile(url);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Tal Bronfer", result.Name);
+        }
         #endregion
 
         #region Bad Input
