@@ -4,11 +4,13 @@
 Build an application that parses LinkedIn public profiles, stores results in structured manner in persistent layer and allows to perform search on stored results.
 ## Technical Details
 The interaction with application performed via RESTful API. The API must contain at least 3 endpoints:
+
 1.	Adding a public LinkedIn profile page 
 2.	Searching for people that were previously added
 3.	Searching for skills and viewing associated people
 
 Once the page is parsed it must extract at minimum the following fields:
+
 1.	Name of the person
 2.	Current title 
 3.	Current position
@@ -20,6 +22,7 @@ Once the page is parsed it must extract at minimum the following fields:
 5 first fields are searchable through the API. Based on 3 last fields you will need to design and implement a scoring mechanism for the person’s profile. The definition of scoring mechanism is totally in your hand – it can be trivial (based on years of experience, amount of skills, etc.) or complex (NLP which analyzes the quality of English in all fields, educational institutions or employees ranking, etc.).
 
 The application needs to be built with high-volume in mind:
+
 1.	Assume that a lot of users will be adding profiles for parsing concurrently
 2.	The persistent layer may eventually contain millions of results, searching through those results still needs to be effective
 
