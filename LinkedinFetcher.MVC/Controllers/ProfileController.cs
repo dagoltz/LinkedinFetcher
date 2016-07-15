@@ -22,6 +22,7 @@ namespace LinkedinFetcher.MVC.Controllers
             new HtmlDownloader(),
             new MemoryCacheProvider<Profile>());
         private readonly IProfileStore _profileStore = new MongoProfileStore();
+        private static readonly IProfileRanker Ranker = new SimpleProfileRanker();
 
         /// <summary>
         /// Search the collection of profiles.
@@ -40,7 +41,7 @@ namespace LinkedinFetcher.MVC.Controllers
             var parameters = new SearchParameters(name, currentTitle, currentPosition, summary, skill);
 
             AssertParameters(parameters);
-            return _profileStore.Search(parameters);
+            return _profileStore.Search(parameters, Ranker);
         }
 
         /// <summary>

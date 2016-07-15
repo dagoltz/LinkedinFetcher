@@ -13,6 +13,11 @@ namespace LinkedinFetcher.DataProvider.Store
         public abstract void Store(Profile profile);
         public abstract IEnumerable<Profile> Search(SearchParameters parameters);
 
+        public IEnumerable<Profile> Search(SearchParameters parameters, IProfileRanker ranker)
+        {
+            return Search(parameters).OrderByDescending(p => ranker.Rank(p, parameters));
+        }
+
         protected IEnumerable<Profile> Search(SearchParameters parameters, IEnumerable<Profile> profiles)
         {
             return profiles

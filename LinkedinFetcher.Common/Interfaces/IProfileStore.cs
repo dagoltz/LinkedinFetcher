@@ -7,5 +7,6 @@ namespace LinkedinFetcher.Common.Interfaces
     {
         void Store(Profile profile);
         IEnumerable<Profile> Search(SearchParameters parameters);
+        IEnumerable<Profile> Search(SearchParameters parameters, IProfileRanker ranker);
     }
 }

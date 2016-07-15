@@ -73,6 +73,7 @@
     <Compile Include="Store\Models\MongoProfile.cs" />
     <Compile Include="Store\MongoProfileStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Store\SimpleProfileRanker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LinkedinFetcher.Common\LinkedinFetcher.Common.csproj">
