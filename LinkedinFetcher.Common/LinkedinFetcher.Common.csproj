@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IProfileProvider.cs" />
+    <Compile Include="Interfaces\IProfileRanker.cs" />
     <Compile Include="Interfaces\IProfileStore.cs" />
     <Compile Include="Models\SearchParameters.cs" />
     <Compile Include="Models\AssociatedPerson.cs" />
