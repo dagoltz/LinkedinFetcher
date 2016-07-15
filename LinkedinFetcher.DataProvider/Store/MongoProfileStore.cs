@@ -15,7 +15,7 @@ namespace LinkedinFetcher.DataProvider.Store
     public class MongoProfileStore : LinqSearchStore
     {
         // TODO: get from config
-        const string ConnectionString = "******";
+        const string ConnectionString = "mongodb://gici:dothatthing@ds019624.mlab.com:19624/linkedin-fetcher-db";
         private const string DbName = "linkedin-fetcher-db";
         private const string CollectionName = "profiles";
 
